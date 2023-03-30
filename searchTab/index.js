@@ -44,7 +44,7 @@ window.onload = function () {
     for (let i = 0; i < inputs.length; i++) {
         // When user press enter, trigger the button click event;
         inputs[i].addEventListener("keydown", function (event) {
-            let buttonIndexToClick = -1;
+            let buttonIndexToClick = null;
             if (event.keyCode === 13 && event.ctrlKey) {
                 event.preventDefault();
                 buttonIndexToClick = searchShortcut['ctrl+enter'];
@@ -58,7 +58,8 @@ window.onload = function () {
                 event.preventDefault();
                 buttonIndexToClick = searchShortcut['enter'];
             }
-            buttonIndexToClick = buttonIndexToClick === -1 ? i : buttonIndexToClick;
+            if (buttonIndexToClick === null) return;
+            if (buttonIndexToClick === -1) buttonIndexToClick = i;
             buttons[buttonIndexToClick].click();
         });
         // When user press tab, focus on the next input; When user press shift+tab, focus on the previous input
@@ -90,7 +91,13 @@ window.onload = function () {
         autoFocus();
 
         document.body.addEventListener("click", function (event) {
-            autoFocus();
+            // If user click on the page, autofocus on the input
+            // else if user click on the input, do nothing
+            if (event.target.tagName !== "INPUT") {
+                autoFocus();
+            }
+
+            // autoFocus();
             document.body.removeEventListener("click", arguments.callee);
             event.stopPropagation();
         });
