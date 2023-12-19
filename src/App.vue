@@ -104,6 +104,7 @@ import LocaleSelector from "@/components/LocaleSelector.vue";
     width: 150px;
     text-align: right;
     margin-left: 10px;
+    
 }
 </style>
 

@@ -1,5 +1,5 @@
-import {createI18n} from "vue-i18n/dist/vue-i18n.runtime.esm-bundler";
-
+import {createI18n} from "vue-i18n";
+// import {createI18n} from "vue-i18n/dist/vue-i18n.runtime.esm-bundler.js";
 
 const messages = {
     en: {
@@ -38,7 +38,7 @@ const lang = getLanguage();
 
 function setLanguage(language) {
     localStorage.setItem('lang', language);
-    i18n.global.locale = language;
+    i18n.global.locale.value = language;
 }
 
 export const i18n = createI18n({

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="openInNewTabCheckboxContainer">
         <input id="openInNewTabCheckbox" type="checkbox" v-model="settings.openInNewTab">
         <label for="openInNewTabCheckbox">{{$t("openInNewTab")}}</label>
     </div>
@@ -19,5 +19,8 @@ export default {
 </script>
 
 <style scoped>
-
+#openInNewTabCheckboxContainer {
+    display: flex;
+    align-items: center;
+}
 </style>
