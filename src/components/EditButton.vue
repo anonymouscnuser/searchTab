@@ -1,7 +1,6 @@
 <template>
     <div class="edit-button-container">
-        <button v-if="!settings.isEditing" class="edit-text-clickable" @click="edit()">{{$t("editSearch")}}</button>
-        <div v-else>
+        <div>
             <button class="edit-text-clickable" @click="completeEdit()">{{$t("save")}}</button>
             <button class="edit-text-clickable" @click="$emit('onAdd')">{{$t("add")}}</button>
             <button class="edit-text-clickable" @click="$emit('onReset')">{{$t("reset")}}</button>
@@ -20,9 +19,6 @@ export default {
         };
     },
     methods: {
-        edit() {
-            settings.isEditing = true;
-        },
         completeEdit() {
             this.$emit("onCompleteEdit");
         },
