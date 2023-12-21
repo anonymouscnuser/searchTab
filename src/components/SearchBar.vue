@@ -1,6 +1,13 @@
 <template>
     <div class="search-bar-container" v-if="enabled">
-        <input class="search-input" type="text" v-bind:placeholder="hint" @keydown="onKD()" />
+        <input class="search-input" type="text"
+               v-bind:placeholder="hint"
+               :value="searchText"
+               @input="$emit('update:searchText', $event.target.value)"
+               @keydown="onKD()"
+               @compositionstart="onCompositionStart()"
+               @compositionend="onCompositionEnd()"
+        />
         <button class="search-button" @click="search()">{{ buttonText }}</button>
     </div>
 </template>
@@ -11,6 +18,9 @@ import {settings} from "@/GlobalSetting.vue";
 export default {
     name: "SearchBar",
     props: {
+        searchText: {
+            type: String,
+        },
         hint: {
             type: String,
         },
@@ -54,6 +64,12 @@ export default {
                 }
                 return false;
             }
+        },
+        onCompositionStart() {
+            this.lock = true;
+        },
+        onCompositionEnd() {
+            this.lock = false;
         },
     },
 };

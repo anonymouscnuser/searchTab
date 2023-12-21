@@ -9,15 +9,9 @@
 </template>
 
 <script>
-import {settings} from "@/GlobalSetting.vue";
 
 export default {
     name: "EditButton",
-    data() {
-        return {
-            settings,
-        };
-    },
     methods: {
         completeEdit() {
             this.$emit("onCompleteEdit");

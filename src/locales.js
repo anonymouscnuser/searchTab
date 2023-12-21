@@ -10,6 +10,7 @@ const messages = {
         buttonText: "Button Text",
         url: "URL:",
         openInNewTab: "Open in new tab",
+        syncSearchBar: "Same input in all search bars",
     },
     zh: {
         editSearch: "编辑搜索栏",
@@ -19,6 +20,7 @@ const messages = {
         buttonText: "按钮的文字",
         url: "网址：",
         openInNewTab: "在新标签页打开",
+        syncSearchBar: "输入同步",
     }
 }
 

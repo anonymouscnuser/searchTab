@@ -2,8 +2,18 @@
 import {settings} from "./GlobalSetting.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import BottomPanel from "@/components/BottomPanel.vue";
-</script>
+import {ref} from "vue";
 
+// shared search bar text
+const sharedSearchText = ref("");
+
+function onSearchBarUpdateSearchText(newText) {
+    if (settings.syncSearchBar) {
+        sharedSearchText.value = newText;
+    }
+}
+
+</script>
 <template>
     <div class="padding-element"/>
 
@@ -15,6 +25,8 @@ import BottomPanel from "@/components/BottomPanel.vue";
                        :hint="data.hint"
                        :buttonText="data.buttonText"
                        :query="data.query"
+                       :search-text="sharedSearchText"
+                       @update:searchText="onSearchBarUpdateSearchText"
                        :key="data.hint"/>
         </div>
 
