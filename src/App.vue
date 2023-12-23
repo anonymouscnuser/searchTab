@@ -1,12 +1,19 @@
 <script setup>
 import {settings} from "./GlobalSetting.vue";
 import SearchBar from "@/components/SearchBar.vue";
-import EditButton from "@/components/EditButton.vue";
-import SearchConfigPanel from "@/components/SearchConfigPanel.vue";
-import OpenInNewTabSection from "@/components/OpenInNewTabSection.vue";
-import LocaleSelector from "@/components/LocaleSelector.vue";
-</script>
+import BottomPanel from "@/components/BottomPanel.vue";
+import {ref} from "vue";
 
+// shared search bar text
+const sharedSearchText = ref("");
+
+function onSearchBarUpdateSearchText(newText) {
+    if (settings.syncSearchBar) {
+        sharedSearchText.value = newText;
+    }
+}
+
+</script>
 <template>
     <div class="padding-element"/>
 
@@ -18,32 +25,16 @@ import LocaleSelector from "@/components/LocaleSelector.vue";
                        :hint="data.hint"
                        :buttonText="data.buttonText"
                        :query="data.query"
+                       :search-text="sharedSearchText"
+                       @update:searchText="onSearchBarUpdateSearchText"
                        :key="data.hint"/>
         </div>
 
         <!-- 分割线 -->
         <div id="split-line"></div>
 
-        <div class="settings-container">
-            <div class="settings-title">
-                <div class="edit-container">
-                    <EditButton
-                            @onCompleteEdit="$refs.searchPanel.updateConfig()"
-                            @onAdd="$refs.searchPanel.addOneItem()"
-                            @onReset="$refs.searchPanel.resetConfig()"/>
-                </div>
+        <BottomPanel class="settings-container"/>
 
-                <div class="locale-container">
-                    <LocaleSelector/>
-                </div>
-
-                <div class="new-tab-setting-container">
-                    <OpenInNewTabSection/>
-                </div>
-            </div>
-
-            <SearchConfigPanel ref="searchPanel" v-if="settings.isEditing"/>
-        </div>
     </div>
 
     <div class="padding-element"/>
@@ -85,25 +76,6 @@ import LocaleSelector from "@/components/LocaleSelector.vue";
 
 .container-center {
     min-height: 60vh;
-}
-
-.settings-title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    height: 20px;
-}
-
-.locale-container {
-    margin-left: auto;
-    margin-right: 10px;
-}
-
-.new-tab-setting-container {
-    width: 150px;
-    text-align: right;
-    margin-left: 10px;
 }
 </style>
 

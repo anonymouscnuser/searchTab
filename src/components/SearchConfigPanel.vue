@@ -1,4 +1,15 @@
 <template>
+    <div class="settings-title">
+        <div class="edit-container">
+            <EditButtonGroup
+                @onCompleteEdit="updateConfig()"
+                @onAdd="addOneItem()"
+                @onReset="resetConfig()"/>
+        </div>
+
+        <LocaleSelector class="locale-selector"/>
+    </div>
+
     <div class="search-config-panel-container">
         <SearchConfigItem v-for="(item, index) in configs"
                           :key="index"
@@ -13,6 +24,8 @@
 import SearchConfigItem from "@/components/SearchConfigItem.vue";
 import {settings, getConfigCopy} from "@/GlobalSetting.vue";
 import {reactive} from "vue";
+import EditButtonGroup from "@/components/EditButton.vue";
+import LocaleSelector from "@/components/LocaleSelector.vue";
 
 function validateConfig(configs) {
     let errorMsgs = [];
@@ -31,7 +44,7 @@ function validateConfig(configs) {
 
 export default {
     name: "SearchConfigPanel",
-    components: {SearchConfigItem},
+    components: {LocaleSelector, EditButtonGroup, SearchConfigItem},
     data() {
         const configs = getConfigCopy(settings.searchBarData);
         return {
@@ -91,5 +104,14 @@ export default {
 </script>
 
 <style scoped>
+.settings-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
+    height: 20px;
+}
+.locale-selector {
+    margin-left: auto;
+}
 </style>

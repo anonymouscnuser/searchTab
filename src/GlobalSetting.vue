@@ -6,7 +6,7 @@ const defaultSettings = {
     searchBarData: [
         {
             buttonText: "百度一下",
-            hint: "Search Baidu",
+            hint: "Search 百度一下",
             query: "https://www.baidu.com/s?wd={}",
             enabled: true,
         },
@@ -134,9 +134,19 @@ function loadIsOpenInNewTab() {
     }
 }
 
+function loadIsSyncSearchBar() {
+    const data = localStorage.getItem("syncSearchBar");
+    if (data) {
+        return JSON.parse(data);
+    } else {
+        return true;
+    }
+}
+
 const settings = reactive({
     openInNewTab: loadIsOpenInNewTab(),
     searchBarData: loadSearchBarData(),
+    syncSearchBar: loadIsSyncSearchBar(),
     isEditing: false,
 
     resetSearchBarData() {
@@ -149,6 +159,9 @@ const settings = reactive({
 // watch openInNewTab and save to localStorage
 watch(() => settings.openInNewTab, (newValue) => {
     localStorage.setItem("openInNewTab", JSON.stringify(newValue));
+});
+watch(() => settings.syncSearchBar, (newValue) => {
+    localStorage.setItem("syncSearchBar", JSON.stringify(newValue));
 });
 
 export {settings, getConfigCopy};

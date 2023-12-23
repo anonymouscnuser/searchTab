@@ -1,5 +1,5 @@
-import {createI18n} from "vue-i18n/dist/vue-i18n.runtime.esm-bundler";
-
+import {createI18n} from "vue-i18n";
+// import {createI18n} from "vue-i18n/dist/vue-i18n.runtime.esm-bundler.js";
 
 const messages = {
     en: {
@@ -10,6 +10,7 @@ const messages = {
         buttonText: "Button Text",
         url: "URL:",
         openInNewTab: "Open in new tab",
+        syncSearchBar: "Same input in all search bars",
     },
     zh: {
         editSearch: "编辑搜索栏",
@@ -19,6 +20,7 @@ const messages = {
         buttonText: "按钮的文字",
         url: "网址：",
         openInNewTab: "在新标签页打开",
+        syncSearchBar: "输入同步",
     }
 }
 
@@ -38,7 +40,7 @@ const lang = getLanguage();
 
 function setLanguage(language) {
     localStorage.setItem('lang', language);
-    i18n.global.locale = language;
+    i18n.global.locale.value = language;
 }
 
 export const i18n = createI18n({

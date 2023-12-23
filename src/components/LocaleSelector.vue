@@ -12,7 +12,7 @@ import {setLanguage} from "@/locales";
 
 <style scoped>
 .edit-text-clickable {
-    margin-left: 10px;
+    margin-right: 10px;
     color: #0000ee;
     background-color: transparent;
     border: none;
@@ -21,9 +21,5 @@ import {setLanguage} from "@/locales";
     font-size: 16px;
     font-weight: 500;
     padding: 0;
-}
-
-div {
-    width: 100px;
 }
 </style>
