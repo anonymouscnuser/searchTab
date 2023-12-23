@@ -18,8 +18,15 @@ import {settings} from "@/GlobalSetting.vue";
 </template>
 
 <style scoped>
+.option-container > div {
+    display: flex;
+    align-items: center;
+}
 .option-checkbox {
     margin: 0 5px;
+}
+label {
+    font-size: 16px;
 }
 /* three options per line */
 .option-container {

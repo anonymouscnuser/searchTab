@@ -12,7 +12,7 @@ function edit() {
         <button class="edit-text-clickable" @click="edit()">
             <img src="@/assets/setting.svg" alt="setting" width="20px" height="20px">
         </button>
-        <a class="author" href="https://github.com/xixiaxixi" target="_blank">Author: 晨曦</a>
+        <a class="author" href="https://github.com/xixiaxixi" target="_blank" title="github.com/xixiaxixi">Author: 晨曦</a>
     </div>
     <SettingPanel v-else/>
 </template>
@@ -32,5 +32,10 @@ function edit() {
 .author {
     float: right;
     text-decoration: none;
+    color: #0000ee;
+    font-size: 16px;
+}
+.author:visited {
+    color: #0000ee;
 }
 </style>
